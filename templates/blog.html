@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% block title %} Build a Blog {% endblock %}
-{% block header %} Build a Blog {% endblock %}
+{% block title %} Blogz {% endblock %}
+{% block header %} Blog Posts! {% endblock %}
 {% block content %}
     <ul>
         {% for blog in blogs %}
         <li>
             <h2> <a href= {{ "./blog?id=" ~ blog.id }} > {{blog.title}} </a> </h2> 
             <p> {{blog.body}} </p>
+            <p class="post-author">written by <a href= {{ "/blog?user=" ~ blog.user.username }} > {{blog.user.username}} </a></p>
             </li>
         {% endfor %}
     </ul>
