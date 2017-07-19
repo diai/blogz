@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Blogz {% endblock %}
+{% block header %} Blog Users! {% endblock %}
+{% block content %}
+    <ul>
+        {% for user in users %}
+        <li>
+            <a href= {{ "/blog?user=" ~ user.username }} > {{user.username}} </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

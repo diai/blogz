@@ -93,15 +93,21 @@ def logout():
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    return redirect('/blog')
+    users = User.query.all()
+    return render_template('index.html', users=users)
 
 @app.route('/blog', methods=['GET'])
 def view_blog():
 
-    if request.args:
+    if 'id' in request.args:
         post_id = request.args.get('id')
         blog = Blog.query.get(post_id)
         return render_template('one_post.html', blog=blog)
+
+    if 'user' in request.args:
+        username = request.args.get('user')
+        user = User.query.filter_by(username=username).first()
+        return render_template('user_posts.html', user=user)
 
     blogs = Blog.query.all()
     return render_template('blog.html', blogs=blogs)
